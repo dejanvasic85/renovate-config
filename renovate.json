@@ -24,7 +24,7 @@
     "dependencyDashboardOSVVulnerabilitySummary": "none",
     "ignorePaths": ["**/node_modules/**", "**/.next/**"],
     "lockFileMaintenance": {
-        "enabled": true,
+        "enabled": false,
         "automerge": true,
         "rebaseWhen": "behind-base-branch",
         "recreateWhen": "auto",
