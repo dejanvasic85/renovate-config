@@ -13,7 +13,7 @@
     "automerge": true,
     "commitMessageAction": "",
     "toolSettings": {
-        "nodeMaxMemory": "2048"
+        "nodeMaxMemory": 2048
     },
     "minimumReleaseAge": "1 day",
     "labels": ["dependencies"],
