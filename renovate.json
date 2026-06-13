@@ -15,6 +15,10 @@
     "toolSettings": {
         "nodeMaxMemory": 1024
     },
+    "env": {
+        "PNPM_WORKERS": "1",
+        "PNPM_MAX_WORKERS": "1"
+    },
     "minimumReleaseAge": "1 day",
     "labels": ["dependencies"],
     "branchConcurrentLimit": 2,
