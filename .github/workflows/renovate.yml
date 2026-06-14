@@ -2,8 +2,9 @@ name: Renovate
 
 on:
   schedule:
-    # Every 4 hours
-    - cron: "0 */4 * * *"
+    # 06:00 Melbourne. GitHub cron is UTC only: 20:00 UTC = 06:00 AEST (UTC+10).
+    # During daylight saving (AEDT, UTC+11) this fires at 07:00 — close enough.
+    - cron: "0 20 * * *"
   workflow_dispatch:
     inputs:
       logLevel:
@@ -14,15 +15,43 @@ on:
         options:
           - debug
           - info
+      repoCache:
+        description: "Renovate repository cache"
+        required: false
+        default: "enabled"
+        type: choice
+        options:
+          - enabled
+          - disabled
+          - reset
 
 concurrency:
   group: renovate
   cancel-in-progress: false
 
+env:
+  # Default cache dir the Renovate container writes to (shared with the host).
+  cache_dir: /tmp/renovate/cache/renovate/repository
+
 jobs:
   renovate:
     runs-on: ubuntu-latest
     steps:
+      - name: Restore Renovate repository cache
+        if: github.event.inputs.repoCache != 'disabled'
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ env.cache_dir }}
+          # Unique key each run + prefix restore-keys = always restore latest, always save fresh.
+          key: renovate-cache-${{ github.run_id }}
+          restore-keys: |
+            renovate-cache-
+
+      - name: Make cache writable by the Renovate container (UID 1000)
+        run: |
+          sudo mkdir -p "$cache_dir"
+          sudo chown -R 1000:1000 /tmp/renovate
+
       - name: Run Renovate
         uses: renovatebot/github-action@v46.1.15
         env:
@@ -30,6 +59,14 @@ jobs:
           RENOVATE_PLATFORM: github
           # Repos Renovate manages. Add more entries as you onboard them.
           RENOVATE_REPOSITORIES: '["dejanvasic85/williamstownsc"]'
+          RENOVATE_REPOSITORY_CACHE: ${{ github.event.inputs.repoCache || 'enabled' }}
           # Standard GitHub runner has 16GB RAM, so give Node plenty of headroom.
           NODE_OPTIONS: "--max-old-space-size=6144"
           LOG_LEVEL: ${{ inputs.logLevel || 'info' }}
+
+      - name: Save Renovate repository cache
+        if: always() && github.event.inputs.repoCache != 'disabled'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ env.cache_dir }}
+          key: renovate-cache-${{ github.run_id }}
