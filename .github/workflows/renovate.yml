@@ -58,8 +58,8 @@ jobs:
           RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
           RENOVATE_PLATFORM: github
           # Repos Renovate manages. Add more entries as you onboard them.
-          RENOVATE_REPOSITORIES: '["dejanvasic85/williamstownsc"]'
           RENOVATE_REPOSITORY_CACHE: ${{ github.event.inputs.repoCache || 'enabled' }}
+          RENOVATE_REPOSITORIES: '["dejanvasic85/williamstownsc","dejanvasic85/ses-next","dejanvasic85/orderflow","dejanvasic85/notes","dejanvasic85/jlc-carpentry","dejanvasic85/portfolio","dejanvasic85/ynab-sync","dejanvasic85/team-manager"]'
           # Standard GitHub runner has 16GB RAM, so give Node plenty of headroom.
           NODE_OPTIONS: "--max-old-space-size=6144"
           LOG_LEVEL: ${{ inputs.logLevel || 'info' }}
