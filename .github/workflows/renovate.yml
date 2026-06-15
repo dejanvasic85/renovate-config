@@ -49,7 +49,7 @@ jobs:
 
       - name: Make cache writable by the Renovate container (UID 1000)
         run: |
-          sudo mkdir -p "$cache_dir"
+          sudo mkdir -p "$cache_dir" /tmp/renovate/cache/containerbase
           sudo chown -R 1000:1000 /tmp/renovate
 
       - name: Run Renovate
