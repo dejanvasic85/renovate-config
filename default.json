@@ -44,6 +44,11 @@
             "groupName": "node and types",
             "matchManagers": ["mise", "npm"],
             "allowedVersions": "/^(20|22|24|26|28|30|32|34|36|38|40)\\./"
+        },
+        {
+            "description": "Group playwright npm and container image together to keep versions in sync",
+            "matchPackageNames": ["@playwright/test", "playwright", "mcr.microsoft.com/playwright"],
+            "groupName": "playwright"
         }
     ]
 }
