@@ -1,7 +1,6 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        ":rebaseStalePrs",
         ":renovatePrefix",
         ":semanticCommits",
         ":timezone(Australia/Melbourne)",
@@ -19,6 +18,7 @@
         "PNPM_WORKERS": "1",
         "PNPM_MAX_WORKERS": "1"
     },
+    "rebaseWhen": "conflicted",
     "minimumReleaseAge": "1 day",
     "labels": ["dependencies"],
     "branchConcurrentLimit": 5,
