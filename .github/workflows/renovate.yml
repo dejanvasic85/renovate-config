@@ -29,6 +29,6 @@ jobs:
         env:
           RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
           RENOVATE_PLATFORM: github
-          RENOVATE_REPOSITORIES: '["dejanvasic85/williamstownsc","dejanvasic85/ses-next","dejanvasic85/orderflow","dejanvasic85/notes","dejanvasic85/jlc-carpentry","dejanvasic85/portfolio","dejanvasic85/ynab-sync","dejanvasic85/team-manager"]'
+          RENOVATE_REPOSITORIES: '["dejanvasic85/williamstownsc","dejanvasic85/ses-next","dejanvasic85/orderflow","dejanvasic85/notes","dejanvasic85/jlc-carpentry","dejanvasic85/portfolio","dejanvasic85/ynab-sync"]'
           NODE_OPTIONS: "--max-old-space-size=6144"
           LOG_LEVEL: ${{ inputs.logLevel || 'info' }}
