@@ -20,6 +20,9 @@
     },
     "rebaseWhen": "conflicted",
     "minimumReleaseAge": "1 day",
+    "statusCheckNames": {
+        "minimumReleaseAge": null
+    },
     "labels": ["dependencies"],
     "branchConcurrentLimit": 5,
     "prNotPendingHours": 1,
