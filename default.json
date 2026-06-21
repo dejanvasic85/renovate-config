@@ -21,7 +21,7 @@
     },
     "minimumReleaseAge": "1 day",
     "labels": ["dependencies"],
-    "branchConcurrentLimit": 2,
+    "branchConcurrentLimit": 5,
     "prNotPendingHours": 1,
     "semanticCommitScope": "",
     "semanticCommitType": "deps",
