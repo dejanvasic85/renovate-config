@@ -29,7 +29,7 @@ jobs:
         env:
           RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
           RENOVATE_PLATFORM: github
-          RENOVATE_REPOSITORIES: '["dejanvasic85/renovate-config","dejanvasic85/williamstownsc","dejanvasic85/ses-next","dejanvasic85/orderflow","dejanvasic85/notes","dejanvasic85/jlc-carpentry","dejanvasic85/portfolio","dejanvasic85/ynab-sync"]'
+          RENOVATE_REPOSITORIES: '["dejanvasic85/renovate-config", "dejanvasic85/matchday","dejanvasic85/williamstownsc","dejanvasic85/ses-next","dejanvasic85/orderflow","dejanvasic85/notes","dejanvasic85/jlc-carpentry","dejanvasic85/portfolio","dejanvasic85/ynab-sync"]'
           # Every managed repo already has a committed renovate.json, so the onboarding
           # flow is never needed. Leaving it on made Renovate try to build an onboarding
           # PR for this repo and crash in ensureOnboardingPr ("reading 'homepage'"),
