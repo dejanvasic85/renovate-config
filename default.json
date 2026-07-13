@@ -1,57 +1,66 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-        ":renovatePrefix",
-        ":semanticCommits",
-        ":timezone(Australia/Melbourne)",
-        ":dependencyDashboard",
-        ":pinDependencies",
-        ":pinDevDependencies",
-        "group:allNonMajor"
-    ],
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    ":renovatePrefix",
+    ":semanticCommits",
+    ":timezone(Australia/Melbourne)",
+    ":dependencyDashboard",
+    ":pinDependencies",
+    ":pinDevDependencies",
+    "group:allNonMajor"
+  ],
+  "automerge": true,
+  "commitMessageAction": "",
+  "toolSettings": {
+    "nodeMaxMemory": 1024
+  },
+  "env": {
+    "PNPM_WORKERS": "1",
+    "PNPM_MAX_WORKERS": "1"
+  },
+  "rebaseWhen": "conflicted",
+  "minimumReleaseAge": "1 day",
+  "statusCheckNames": {
+    "minimumReleaseAge": null
+  },
+  "labels": ["dependencies"],
+  "branchConcurrentLimit": 5,
+  "prNotPendingHours": 1,
+  "semanticCommitScope": "",
+  "semanticCommitType": "deps",
+  "dependencyDashboardOSVVulnerabilitySummary": "none",
+  "ignorePaths": ["**/node_modules/**", "**/.next/**"],
+  "lockFileMaintenance": {
+    "enabled": false,
     "automerge": true,
-    "commitMessageAction": "",
-    "toolSettings": {
-        "nodeMaxMemory": 1024
+    "rebaseWhen": "behind-base-branch",
+    "recreateWhen": "auto",
+    "schedule": ["before 4am on monday"],
+    "prBodyDefinitions": {
+      "Change": "All locks refreshed"
+    }
+  },
+  "packageRules": [
+    {
+      "description": "Node and types - LTS versions only",
+      "matchPackageNames": ["node", "@types/node"],
+      "groupName": "node and types",
+      "matchManagers": ["mise", "npm"],
+      "allowedVersions": "/^(20|22|24|26|28|30|32|34|36|38|40)\\./"
     },
-    "env": {
-        "PNPM_WORKERS": "1",
-        "PNPM_MAX_WORKERS": "1"
+    {
+      "description": "Group playwright npm and container image together to keep versions in sync",
+      "matchPackageNames": [
+        "@playwright/test",
+        "playwright",
+        "mcr.microsoft.com/playwright"
+      ],
+      "groupName": "playwright"
     },
-    "rebaseWhen": "conflicted",
-    "minimumReleaseAge": "1 day",
-    "statusCheckNames": {
-        "minimumReleaseAge": null
-    },
-    "labels": ["dependencies"],
-    "branchConcurrentLimit": 5,
-    "prNotPendingHours": 1,
-    "semanticCommitScope": "",
-    "semanticCommitType": "deps",
-    "dependencyDashboardOSVVulnerabilitySummary": "none",
-    "ignorePaths": ["**/node_modules/**", "**/.next/**"],
-    "lockFileMaintenance": {
-        "enabled": false,
-        "automerge": true,
-        "rebaseWhen": "behind-base-branch",
-        "recreateWhen": "auto",
-        "schedule": ["before 4am on monday"],
-        "prBodyDefinitions": {
-            "Change": "All locks refreshed"
-        }
-    },
-    "packageRules": [
-        {
-            "description": "Node and types - LTS versions only",
-            "matchPackageNames": ["node", "@types/node"],
-            "groupName": "node and types",
-            "matchManagers": ["mise", "npm"],
-            "allowedVersions": "/^(20|22|24|26|28|30|32|34|36|38|40)\\./"
-        },
-        {
-            "description": "Group playwright npm and container image together to keep versions in sync",
-            "matchPackageNames": ["@playwright/test", "playwright", "mcr.microsoft.com/playwright"],
-            "groupName": "playwright"
-        }
-    ]
+    {
+      "description": "pnpm 11.12.0 breaks pnpm/action-setup self-install (createFullPkgId integrity crash). See pnpm/action-setup#276. Only this version is excluded; later releases are allowed.",
+      "matchPackageNames": ["pnpm"],
+      "allowedVersions": "!=11.12.0"
+    }
+  ]
 }
