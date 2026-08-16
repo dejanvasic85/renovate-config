@@ -16,6 +16,11 @@
       "description": "TypeScript 7 is the native (Go) compiler and ships platform binaries instead of the JS module Next.js loads, so next build fails to detect TypeScript. Unblock once Next.js supports the native compiler.",
       "matchPackageNames": ["typescript"],
       "allowedVersions": "<7.0.0"
+    },
+    {
+      "description": "next-sanity and the sanity Studio package still require @sanity/client ^7.26.2 as of next-sanity@13.3.3; @sanity/client v8 is ESM-only/Node 22.12+ and breaks that peer range. Unblock once next-sanity publishes support for @sanity/client v8.",
+      "matchPackageNames": ["@sanity/client"],
+      "allowedVersions": "<8.0.0"
     }
   ]
 }
