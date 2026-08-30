@@ -8,3 +8,4 @@ dejanvasic85/jlc-carpentry
 dejanvasic85/portfolio
 dejanvasic85/ynab-sync
 dejanvasic85/honeycomb
+dejanvasic85/stadly
