@@ -1,5 +1,5 @@
 dejanvasic85/renovate-config
-dejanvasic85/matchday
+stadly-au/matchday
 dejanvasic85/williamstownsc
 dejanvasic85/ses-next
 dejanvasic85/orderflow
@@ -8,4 +8,4 @@ dejanvasic85/jlc-carpentry
 dejanvasic85/portfolio
 dejanvasic85/ynab-sync
 dejanvasic85/honeycomb
-dejanvasic85/stadly
+stadly-au/stadly
